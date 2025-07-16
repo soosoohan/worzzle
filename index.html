@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4YZHC1G9FN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4YZHC1G9FN');
+</script>
+  
+  <meta charset="UTF-8" />
+  <title>Worpuzz vs Computer</title>
+<style>
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #FFF2EB; /* 전체 배경: 피치 크림톤 */
+    margin: 0;
+    padding: 40px;
+    text-align: center;
+    color: #7A2E2E; /* 기본 텍스트: 부드러운 브라운 */
+  }
+
+  h1 {
+    font-size: 3em;
+    color: #FF9494; /* 포인트 핑크 */
+    margin-bottom: 20px;
+  }
+
+  .description {
+    margin-bottom: 30px;
+    font-size: 1.1em;
+    line-height: 1.6;
+    background-color: #FFE8CD; /* 설명 배경: 연한 오렌지 */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #7A2E2E;
+  }
+
+  .row-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 60px;
+    max-width: 800px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+
+  .column {
+    flex: 1 1 300px;
+  }
+
+  .column h2 {
+    color: #FF9494;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #FF9494;
+    padding-bottom: 5px;
+    font-size: 1.3em;
+  }
+
+  .btn-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .btn-list button {
+    padding: 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #FFD6BA; /* 버튼 기본색: 살구톤 */
+    color: #7A2E2E;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .btn-list button:hover {
+    background-color: #FF9494;
+    color: white;
+  }
+
+  .credits {
+    margin-top: 50px;
+    font-size: 0.85em;
+    color: #A65A5A;
+  }
+.description button {
+  margin: 4px 6px;
+  padding: 6px 10px;
+  font-size: 13px;
+  background-color: #FF9494;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.description button:hover {
+  background-color: #FF7373;
+}
+</style>  
+</head>
+<body>
+
+  <h1>WORPUZZ</h1>
+
+  <div class="description">
+    컴퓨터와 교대로 격자를 클릭하여 숨겨진 단어를 찾아가는 1인용 워퍼즈 게임입니다.<br>
+    단어는 가로, 세로, 대각선 방향으로 숨겨져 있으며, 마지막 글자를 열면 해당 단어를 획득합니다.<br>
+    더 많은 단어를 찾는 것이 목표이며, 승패 없이 "게임 종료"로 마무리됩니다.<br><br>
+    🍀 클로버를 열면 상하좌우 4칸이 함께 열리고 한 번 더 턴을 가집니다.<br>
+    🌼 데이지를 열면 주변 8칸이 모두 열리며 마찬가지로 추가 턴이 주어집니다.<br>
+    아래에서 원하는 워드풀을 선택해 게임을 시작하세요.
+  This is a single-player Worpuzz game where you take turns with the computer to uncover hidden words in the grid.<br>
+Words are hidden horizontally, vertically, or diagonally, and you earn the word by revealing its final letter.<br>
+Your goal is to find more words than the computer. There is no winner or loser — the game ends with "Game Over."<br><br>
+🍀 If you find a clover, the four adjacent tiles (up, down, left, right) will open, and you get an extra turn.<br>
+🌼 If you find a daisy, all eight surrounding tiles will open, and you also get an extra turn.<br>
+Choose a word pool below to begin the game.</div>
+
+  <div class="row-container">
+    <div class="column">
+      <h2>ENGLISH</h2>
+      <div class="btn-list">
+
+
+    <button onclick="startGame('e1', true)">A1 Oxford Beginner</button>
+    <button onclick="startGame('e2', true)">A2 Oxford Elementary</button>
+    <button onclick="startGame('e3', true)">B1 Oxford Intermediate</button>
+    <button onclick="startGame('e4', true)">B2 Oxford Upper-Intermediate</button>
+    <button onclick="startGame('e5', true)">C1 Oxford Advanced</button>
+    <button onclick="startGame('e6', true)">Tour</button>
+    <button onclick="startGame('e7', true)">Organism</button>
+    <button onclick="startGame('e8', true)">Onomatopoeia</button>
+    <button onclick="startGame('e9', true)">Mimetic Words</button>
+
+
+</div>
+    </div>
+
+
+<div class="column">
+  <h2>KOREAN</h2>
+  <div class="btn-list">
+
+
+<button onclick="startGame('k1', false)">사자성어/고사성어</button>
+<button onclick="startGame('k2', false)">음성상징어(의태어/의성어)</button>
+<button onclick="startGame('k3', false)">여행</button>
+<button onclick="startGame('k4', false)">동물과 식물</button>
+      <br>
+<button onclick="location.href='https://soosoohan.github.io/soosooland/'">수수 랜드</button>
+
+</div>
+</div>
+
+  </div><br>
+
+<div class="credits">
+<p>
+기획·개발 : 한수수<br>
+개발 보조 : 챗GPT<br>
+코딩 도움 : 클로드<br>
+디자인 도움: 네이처 리<br>
+ⓒ 2025 한수수. 이 게임의 모든 권리는 제작자인 한수수에게 있습니다.<br> 무단 복제, 배포, 2차 창작을 금합니다.<br>
+Created and Developed by Soosoo Han<br>
+Development Assistant: ChatGPT<br>
+Coding Support: Claude<br>
+Design Support: Nature Lee<br>
+© 2025 Soosoo Han. All rights reserved.<br>
+No part of this game may be copied, distributed, or modified without permission.</p>
+</div>
+
+  <script>
+
+function startGame(poolName, isEnglish) {
+    const page = isEnglish ? 'bot_eng.html' : 'bot_kor.html';
+    location.href = `${page}?pool=${poolName}`;
+}    
+  </script>
+
+</body>
+</html>
