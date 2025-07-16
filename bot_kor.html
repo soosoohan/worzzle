@@ -3,42 +3,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>K1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>워퍼즈</title>
 
 <style>
   body {
+
     font-family: 'Noto Sans KR', sans-serif;
-    background-color: #FFF2EB;
+    background-color: #FFF2EB; /* 전체 배경: 피치 크림톤 */
     margin: 0;
-    padding: 10px;
-    color: #7A2E2E;
+    padding: 20px;
+    color: #7A2E2E; /* 따뜻한 브라운 */
     text-align: center;
   }
 
   h1 {
-      font-size: clamp(1.3rem, 3.7vw, 1.9rem);
-      margin-bottom: 8px;
+    font-size: clamp(1.3rem, 3.7vw, 1.9rem);
+    margin-bottom: 10px;
     font-weight: bold;
-    color: #FF9494;
+    color: #FF9494; /* 포인트 핑크 */
   }
 
   p {
-    font-size: clamp(1rem, 3vw, 1.3rem);
+    font-size: 14px;
     margin-bottom: 20px;
-    color: #A65A5A;
+    color: #A65A5A; /* 부드러운 브라운 */
   }
 
   .game-area {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
 
   .game-button {
-    font-size: clamp(1rem, 3vw, 1.3rem);
-    background-color: #FFD6BA;
+    font-size: 18px;
+    background-color: #FFD6BA; /* 살구빛 버튼 */
     padding: 10px 22px;
     margin: 8px;
     color: #7A2E2E;
@@ -53,164 +55,157 @@
     transform: scale(1.05);
   }
 
-
-  .game-container {
+  .container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 500px;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
   }
 
-  .scores-container {
+  /* 모바일용 점수판 컨테이너 (기본적으로 숨김) */
+  .mobile-scores {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    min-width: 220px;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
   }
 
   .cell {
     width: 50px;
     height: 50px;
-    background-color: #FFFFFF;
+    background-color: #FFFFFF; /* 기본 셀 배경: 베이지 오렌지 */
     display: flex;
-    justify-content: center;
+    justify-content: center ;
     align-items: center;
-    font-size: 18px;
+    font-size: 24px;
     cursor: pointer;
     user-select: none;
     border: 1px solid #DDAA88;
-    line-height: 1;
-  }
-
-  .cell:hover {
-    background-color: #E8D5C4;
-  }
+    line-height:1;  
+}
 
   .revealed {
-    background-color: #FFFFFF;
+    background-color: #FFFFFF; /* 열린 셀은 흰색 */
   }
 
   .word-owned-user {
-    background-color: #FFB3D9;
+    background-color: #FFDCDC; /* 사용자 점유 셀: 연핑크 */
   }
 
   .word-owned-computer {
-    background-color: #B3E5FF;
+    background-color: #FFE8CD; /* 컴퓨터 점유 셀: 연오렌지 */
   }
 
-  #userScore {
-    background-color: #FFB3D9;
-  }
-
-  #computerScore {
-    background-color: #B3E5FF;
-  }
-
-  #userScore h3, #computerScore h3 {
-    margin-top: 0;
-    font-size: clamp(1rem, 3vw, 1.3rem);
+  #userScore, #computerScore {
+    width: 160px;
+    min-height: 300px;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    border: 2px solid #7A2E2E;
     color: #7A2E2E;
   }
 
-  /* 기존 점수판 단어 스타일 수정 */
-  #userScore p, #computerScore p {
-    margin: 1px 0;
-    padding: 2px 5px;
-    background-color: rgba(255, 255, 255, 0.5);
-    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-    line-height: 1.2;
+  #userScore {
+    background-color: #FFDCDC;
+  }
+
+  #computerScore {
+    background-color: #FFE8CD;
+  }
+
+  /* 모바일용 점수판 스타일 */
+  #userScore-mobile, #computerScore-mobile {
+    width: 45%;
+    min-height: 150px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px solid #7A2E2E;
+    color: #7A2E2E;
+    display: none;
+  }
+
+  #userScore-mobile {
+    background-color: #FFDCDC;
+  }
+
+  #computerScore-mobile {
+    background-color: #FFE8CD;
   }
 
   #currentTurn {
     font-size: 20px;
     margin: 10px;
-    color: #7A2E2E;
+    color: #A65A5A;
   }
 
   #game {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    border: 2px solid #C89A7B; 
-    border-radius: 8px; 
     grid-gap: 3px;
-    padding: 8px;
+    padding: 3px;
+    border: 2px solid #C89A7B;
     background-color: #FFF2EB;
-      width: 90vw;
-      height: 90vw;
-      max-width: 400px;
-      max-height: 400px;
-      margin: 0 auto;
-    }
-}
-
-  .controls {
-    margin-top: 20px;
-  }
-
-  /* 모바일 점수판 */
-  .mobile-scores {
-    flex-direction: column;
-    gap: 5px;
-    margin-top: 5px;
-    width: 100%;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;  
-    }
-}
-
-  #userScore-mobile, #computerScore-mobile {
-    width: 100%;
-    min-height: 120px;
-    padding: 15px;
-    font-size: clamp(1rem, 3vw, 1.3rem);
-    font-weight: bold;
-    border: 2px solid #7A2E2E;
-    border-radius: 8px;
-    color: #7A2E2E;
-  }
-
-  #userScore-mobile {
-    background-color: #FFB3D9;
-  }
-
-  #computerScore-mobile {
-    background-color: #B3E5FF;
-  }
-
-  #userScore-mobile h3, #computerScore-mobile h3 {
-    margin-top: 0;
-    font-size: clamp(1rem, 3vw, 1.3rem);
-  }
-
-  /* 모바일 점수판 단어 스타일 수정 */
-  #userScore-mobile p, #computerScore-mobile p {
-    margin: 1px 0;
-    padding: 2px 3px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 3px;
-    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-    line-height: 1.2;
   }
 
   .hidden {
     display: none;
   }
 
-    #gameSection {
-      display: flex;
+  /* 모바일 반응형 스타일 */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 12px;
+      margin: 0 10px 15px;
+    }
+
+    .container {
       flex-direction: column;
       align-items: center;
+      gap: 5px;
+    }
+
+    /* 데스크톱 점수판 숨기기 */
+    #userScore, #computerScore {
+      display: none !important;
+    }
+
+    /* 모바일 점수판 보이기 */
+    .mobile-scores {
+      display: flex !important;
+    }
+
+    #userScore-mobile, #computerScore-mobile {
+      display: block !important;
+    }
+
+    #game {
+      grid-template-columns: repeat(10, 1fr);
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .cell {
+      width: 35px;
+      height: 35px;
+      font-size: 18px;
     }
 
     #currentTurn {
-      font-size: clamp(1rem, 3vw, 1.3rem);
+      font-size: 18px;
       margin: 8px;
     }
 
     .game-button {
-      font-size: clamp(1rem, 3vw, 1.3rem);
-      padding: 8px 16px;
+      font-size: 16px;
+      padding: 8px 18px;
       margin: 5px;
     }
 
@@ -218,7 +213,6 @@
       margin-top: 10px;
     }
   }
-
 </style>
 
 </head>
@@ -377,7 +371,7 @@ function init() {
     console.log('실제 배치된 단어 수:', placedWords.length);
   }
   
-  placeDaisies(4);
+  placeDaisies(5);
   placeClovers(8);
   fillEmptyCells();
   updateScore();
