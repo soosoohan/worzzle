@@ -2,7 +2,7 @@
 "__comment": "e1",
  "title": "WORPUZZ A1 Oxford Beginner",
 
-"description": "Find the words hidden horizontally, vertically, and diagonally in the grid!\nIf you spot a four-leaf clover 🍀, you earn an extra turn!\nIf you spot a daisy 🌼, you earn an extra turn!\nCompete against the computer — whoever finds the most wins!",
+"description": "Find the words in the grid! ",
 
   "words": {
     "4": [
