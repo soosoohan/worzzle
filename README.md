@@ -35,6 +35,18 @@ Created a two-player competitive version of Worpuzz called WorpuzzMate and uploa
 컴퓨터와 대결하는 기존 게임을 파스텔 컬러로 리디자인하여 ['worpuzz'](http://soosoohan.github.io/worpuzz)에 업로드함.  
 Redesigned the original game with pastel colors and uploaded it to ['worpuzz'](http://soosoohan.github.io/worpuzz).
 
+
+- **2025-07-16**  
+워퍼즈 게임은 영어가 12*12 의 격자를 갖고 있고. 한글은 10*10의 격자를 갖고 있어서 모바일로 게임하기에는 격자가 너무 작았음    
+모바일로 게임하기  편리하게 한글은 7*7의 격자로 영어는 8*8의 격자로 만들었음    
+워퍼즈 리포지토리를 복제하여 워즐이라는 리포지토리를 만들었음      
+작은 격자에 들어갈 수 있는 만큼만  단어를 고를 수 있게  워드풀을 수정함    
+The Worpuzz game originally had a 12×12 grid for English and a 10×10 grid for Korean.    
+However, these grid sizes were too small for comfortable mobile gameplay.    
+To improve the mobile experience, I changed the grid size to 7×7 for Korean and 8×8 for English.    
+I cloned the Worpuzz repository and created a new one called [‘worzzle’](https://soosoohan.github.io/worzzle).    
+I also modified the word pool so that only words that can fit within the smaller grid sizes are included.    
+
 ---
 
 ### 🔎 How to Play  
