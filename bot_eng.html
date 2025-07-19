@@ -284,7 +284,10 @@ window.onload = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const poolFile = urlParams.get('pool');
   if (!poolFile) {
-    document.body.innerHTML = '<p>❌ 워드풀 파일이 지정되지 않았습니다.</p>';
+    // 임시로 기본 단어들 설정
+    words = ['CAT', 'GAME', 'PLAY', 'WORD', 'PUZZLE', 'FIND', 'CLICK', 'DOG'];
+    gameSection.classList.remove('hidden');
+    init();
     return;
   }
 
@@ -349,14 +352,17 @@ function init() {
 
   createGrid();
   
+  // 단어를 길이 순으로 정렬 (긴 것부터)
+  words.sort((a, b) => b.length - a.length);
+  console.log('길이순 정렬된 단어 목록:', words);
+  
   // 방향 검증과 함께 단어 배치
   if (placeAllWordsWithVariety()) {
     console.log('모든 단어가 성공적으로 배치되었습니다 (3방향 사용)');
   } else {
     console.log('방향 검증 실패 - 기본 배치로 진행');
-    // 기본 배치 로직
+    // 기본 배치 로직 (이미 길이순으로 정렬됨)
     let placedWords = [];
-    shuffle(words);
     
     for (let word of words) {
       let placed = false;
@@ -468,9 +474,9 @@ function placeAllWordsWithVariety() {
     wordMap = {};
     
     let allPlaced = true;
-    const shuffledWords = [...words].sort(() => Math.random() - 0.5);
+    // 이미 길이순으로 정렬된 단어들을 그대로 사용 (긴 것부터)
     
-    for (let word of shuffledWords) {
+    for (let word of words) {
       if (!placeWord(word)) {
         allPlaced = false;
         break;
@@ -649,11 +655,14 @@ function computerMove() {
   const selectedCell = availableCells[randomIndex];
   
   console.log('컴퓨터가 선택한 셀:', selectedCell);
-  handleClick(selectedCell);
+  handleClick(selectedCell, true); // 컴퓨터 행동임을 표시
 }
 
-function handleClick(index) {
+function handleClick(index, isComputerMove = false) {
   if (revealed[index] || resultShown) return;
+  
+  // 사용자 클릭인데 컴퓨터 턴일 때만 차단
+  if (!isComputerMove && currentPlayer !== 'user') return;
 
   const extra = clovers.has(index) || daisies.has(index);
   reveal(index);
