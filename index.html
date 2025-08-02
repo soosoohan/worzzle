@@ -13,7 +13,7 @@
 </script>
   
   <meta charset="UTF-8" />
-  <title>워즐인덱스</title>
+  <title>Worzzle </title>
 <style>
   body {
     font-family: 'Noto Sans KR', sans-serif;
@@ -140,6 +140,53 @@
         padding: 20px;
         border-radius: 10px;
     }
+@media (max-width: 768px) {
+    
+
+.row-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 60px;
+        max-width: 800px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+    }
+
+    .column {
+        flex: 1 1 300px;
+    }
+
+    .column h2 {
+        color: #FF9494;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #FF9494;
+        padding-bottom: 5px;
+        font-size: 1.3em;
+    }
+
+    .btn-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+
+    .btn-list button {
+        padding: 10px;
+        font-size: 15px;
+        border: none;
+        border-radius: 8px;
+        background-color: #FFD6BA;
+        color: #7A2E2E;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .btn-list button:hover {
+        background-color: #FF9494;
+        color: white;
+    }
 </style>  
 </head>
 <body>
@@ -192,19 +239,22 @@ Choose a word pool below to begin the game.</div>
 <button onclick="startGame('k4', false)">동물과 식물</button>
 <button onclick="startGame('k5', false)">사자숙어</button>
       <br>
-<button onclick="location.href='https://soosoohan.github.io/soosooland/'">수수 랜드</button>
 
 </div>
 </div>
 <div class="credits">
         
-<button class="square-button" onclick="location.href='https://soosoohan.github.io/soosooland/'">
-    <div>재미있게</div>
-    <div>공부하는</div>
-    <div>수수랜드</div>
-</button>
+<button onclick="location.href='https://soosoohan.github.io/soosooland/'">수수 랜드</button>
 <p>
-        © 2025 Soosoo Han.<br> All rights reserved.<br>
+        기획·개발 : 한수수<br>
+        ⓒ 2025 한수수. 이 게임의 모든 권리는 제작자인 한수수에게 있습니다.<br>
+        무단 복제, 배포, 2차 창작을 금합니다.<br><br>
+        Created and Developed by Soosoo Han<br>
+        Development Assistant: ChatGPT<br>
+        Coding Support: Claude<br>
+        Design Support: Nature Lee<br>
+        © 2025 Soosoo Han. All rights reserved.<br>
+        No part of this game may be copied, distributed, or modified without permission.
         </p>
     </div>
 
