@@ -7,10 +7,11 @@ The game will continue to be improved and upgraded.
 
 ---
 
-🛡️ **이 게임은 저작권 등록이 진행 중입니다.**                                                        
-무단 복제, 무단 이용, 상업적 사용은 법적 책임을 초래할 수 있습니다.                                         
-🛡️ **This game is currently undergoing copyright registration.**                             
-Unauthorized reproduction, use, or commercial distribution may result in legal consequences.
+> 🛡️ **이 게임은 저작권 등록이 완료되었습니다.**  
+> 무단 복제, 무단 이용, 상업적 사용은 법적 책임을 초래할 수 있습니다.  
+>  
+> 🛡️ **This game has been officially copyright registered.**  
+> Unauthorized reproduction, use, or commercial distribution may result in legal consequences.  
 
 ---
 
@@ -66,9 +67,12 @@ I also modified the word pool so that only words that can fit within the smaller
 
 ---
 
-### 🧪 한수수의  게임들 |  Games by Soosoo Han
+## 🌟 Soosooland - Game Demo Hub by Han Soosoo
 
-➡️ [https://soosoohan.github.io/soosooland](https://soosoohan.github.io/soosooland)
+ "Learning through fun, and fun through learning."
+
+Explore more brain games and puzzles in **[Soosooland](https://soosoohan.github.io/soosooland/)**    
+— a digital playground designed to improve memory, logic, and creativity while having fun!
 
 ---
 ### 👤 만든 사람 | Credits
