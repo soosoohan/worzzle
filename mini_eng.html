@@ -246,16 +246,16 @@
 
 <div class="score-section">
   <div id="userScore" class="score-board">
-    <h3>사용자:</h3>
+    <h3>Player:</h3>
   </div>
   <div id="computerScore" class="score-board">
-    <h3>컴퓨터:</h3>
+    <h3>Computer:</h3>
   </div>
 </div>
 
 <div class="controls">
-  <button id="retryBtn" class="game-button">다시 하기</button>
-  <button onclick="location.href='index.html'" class="game-button">초기 화면</button>
+  <button id="retryBtn" class="game-button">Retry</button>
+  <button onclick="location.href='index.html'" class="game-button">Home</button>
 </div>
 
   </div>
@@ -600,8 +600,8 @@ function reveal(index) {
 }
 
 function updateScore() {
-  const userScoreContent = `<h3>사용자:</h3><br>` + foundBy.user.map(w => `✓ ${w}`).join("<br>");
-  const computerScoreContent = `<h3>컴퓨터:</h3><br>` + foundBy.computer.map(w => `✓ ${w}`).join("<br>");
+  const userScoreContent = `<h3>player:</h3><br>` + foundBy.user.map(w => `✓ ${w}`).join("<br>");
+  const computerScoreContent = `<h3>computer:</h3><br>` + foundBy.computer.map(w => `✓ ${w}`).join("<br>");
   
   userScoreEl.innerHTML = userScoreContent;
   computerScoreEl.innerHTML = computerScoreContent;
