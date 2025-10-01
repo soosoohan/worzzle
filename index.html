@@ -278,6 +278,11 @@ Choose a word pool below to begin the game.</div>
   </div>
 
   <script>
+// 워퍼즈 미니 페이지 - 무한 루프 방지만
+(function() {
+    // 미니에서 왔다고 표시 (뒤로가기 해도 다시 리다이렉트 안 되게)
+    sessionStorage.setItem('fromMini', 'true');
+})();
 
 function startGame(poolName, isEnglish) {
     const page = isEnglish ? 'mini_eng.html' : 'mini_kor.html';
