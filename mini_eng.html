@@ -441,7 +441,11 @@ function createGrid() {
   for (let i = 0; i < totalCells; i++) {
     const cell = document.createElement('div');
     cell.className = 'cell';
-    cell.onclick = () => { if (!resultShown) handleClick(i); };
+    cell.onclick = () => { 
+      if (!resultShown && currentPlayer === 'user') {
+        handleClick(i);
+      }
+    };
     gameEl.appendChild(cell);
   }
 }
@@ -700,9 +704,20 @@ function npcMove() {
 function handleClick(index, isnpcMove = false) {
   if (revealed[index] || resultShown) return;
   
-  if (currentPlayer !== 'user' && !isnpcMove) return;
-
+  // NPC 차례일 때 유저 클릭 차단
+  if (currentPlayer === 'npc' && !isnpcMove) {
+    console.log('NPC 차례입니다. 유저 클릭 무시됨');
+    return;
+  }
+  
+  // 유저 차례일 때 NPC 동작 차단
+  if (currentPlayer === 'user' && isnpcMove) {
+    console.log('유저 차례입니다. NPC 동작 무시됨');
+    return;
+  }
   const extra = clovers.has(index) || daisies.has(index);
+  console.log(`클릭: 인덱스 ${index}, 플레이어: ${currentPlayer}, 추가턴: ${extra}`);
+  
   reveal(index);
   checkWords();
   checkGameEnd();
@@ -711,7 +726,6 @@ function handleClick(index, isnpcMove = false) {
     switchTurn(extra);
   }
 }
-
 function checkWords() {
   for (let word of Object.keys(wordMap)) {
     if (foundWords.has(word)) continue;
