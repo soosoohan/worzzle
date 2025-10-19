@@ -670,8 +670,8 @@ function reveal(index) {
 }
 
 function updateScore() {
-  const userHTML = `<h2>USER:</h2>` + foundBy.user.map(w => `<p>✓ ${w}</p>`).join("");
-  const npcHTML = `<h2>NPC:</h2>` + foundBy.npc.map(w => `<p>✓ ${w}</p>`).join("");
+  const userHTML = `<h2>USER:</h2>` + foundBy.user.map(w => `<p> ${w}</p>`).join("");
+  const npcHTML = `<h2>NPC:</h2>` + foundBy.npc.map(w => `<p> ${w}</p>`).join("");
   
   userScoreEl.innerHTML = userHTML;
   npcScoreEl.innerHTML = npcHTML;
