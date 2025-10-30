@@ -120,9 +120,7 @@ Explore more brain games and puzzles in **[Soosooland](https://soosooland.com/)*
 ### 👤 만든 사람 | Credits
 
 - 기획·개발 : 한수수  
-<p>ⓒ 2025 한수수. 이 게임의 모든 권리는 제작자인 한수수에게 있습니다.<br>
- 무단 복제, 배포, 2차 창작을 금합니다.</p>
-
+ⓒ 2025 한수수. 이 게임의 모든 권리는 제작자인 한수수에게 있습니다.
 - Created and Developed by Soosoo Han  
-<p>© 2025 Soosoo Han. All rights reserved.<br>
+ⓒ 2025 Soosoo Han. All rights reserved.
 
