@@ -5,7 +5,7 @@
 "description": "US Landmarks",
 
   "words": {
-  "5": ["MET","MOMA", "ZION""ALAMO", "LACMA"],
+  "5": ["MET","MOMA", "ZION","ALAMO", "LACMA"],
   "6": ["ACADIA", "ARCHES", "DENALI", "MALIBU"],
   "7": ["OLYMPIC", "ROCKIES", "SEQUOIA", "THE_MET", "GLACIER", "RAINIER", "WAIKIKI", "WHITNEY"],
   "8": ["BIG_BEND", "YOSEMITE", "ALCATRAZ", "COLORADO", "MISSOURI"],
