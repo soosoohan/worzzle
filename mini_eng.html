@@ -672,9 +672,13 @@ function reveal(index) {
         }
       }
     }
-  } else if (daisies.has(index)) {
-    cell.innerHTML = '<span>🌼</span>';
-    cell.classList.add('daisy');
+      } else if (daisies.has(index)) {
+  const img = document.createElement('img');
+  img.src = 'daisy_64x64.png';
+  img.alt = '데이지';
+  img.style.width = '24px';
+  img.style.height = '24px';
+  cell.appendChild(img);
     const x = index % gridSize;
     const y = Math.floor(index / gridSize);
     for (let dy = -1; dy <= 1; dy++) {
