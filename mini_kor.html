@@ -40,7 +40,7 @@
  }
   body {
     font-family: Arial, sans-serif;
-    background: #209087;
+    background: #145454;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -50,20 +50,20 @@
   }
  .back-button {
     position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 8px 10px;      /* 모바일 기본 */
-    font-size: 1.5em;
+    top: 10px;
+    left: 10px;
+    padding: 8px;      /* 모바일 기본 */
+    font-size: 2em;
     font-weight: bold;
-    background-color: #CFF9FF;
-    color: #0A6A79;
+    background-color: #145454;
+    color: #CFF9FF;
     border-radius: 12px;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
     z-index: 100;
 }
-.back-button:hover {
+ .back-button:hover {
     background-color: #1baf8f;
     color: #fff;
 }
@@ -80,6 +80,46 @@
     text-align: center;
     line-height: 1.4;
   }
+/* 난이도 선택 화면 */
+#difficultyScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+#difficultyScreen h2 {
+  font-size: 2em;
+  color: #FFE680;
+  margin-bottom: 10px;
+}
+
+.difficulty-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.difficulty-btn {
+  font-size: 1.4em;
+  background-color: #CFF9FF;
+  color: #0A6A79;
+  width: 200px;
+  padding: 10px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.difficulty-btn:hover {
+  background-color: #1baf8f;
+  color: #fff;
+  transform: scale(1.05);
+}
 
   .game-area {
     display: flex;
@@ -213,7 +253,7 @@
   }
 
   .hidden {
-    display: none;
+  display: none !important;
   }
 
   .btn-container {
@@ -249,7 +289,15 @@
       margin: 0 10px 15px;
     }
     
-    /* 모바일: 세로 배치 */
+    #difficultyScreen h2 {
+      font-size: 1.5em;
+    }
+
+    .difficulty-btn {
+     font-size: 1.1em;
+     padding: 15px 30px;
+   }
+/* 모바일: 세로 배치 */
     .container {
       flex-direction: column;
       align-items: center;
@@ -323,6 +371,17 @@
 <h1 id="game-title">게임 제목</h1>
 <p id="game-desc">게임 설명</p>
 
+<!-- 난이도 선택 화면 -->
+<div id="difficultyScreen">
+  <h2>난이도를 선택하세요.</h2>
+  <div class="difficulty-buttons">
+    <button class="difficulty-btn" onclick="startGame('easy')">쉬움</button>
+    <button class="difficulty-btn" onclick="startGame('normal')">어려움</button>
+  </div>
+</div>
+
+<!-- 게임 화면 -->
+<div id="gameScreen" class="hidden"> 
 <div id="currentTurn"></div>
 
 <!-- 데스크톱: 게임판 + 양쪽 점수판 -->
@@ -351,10 +410,15 @@
 <div class="btn-container">
   <button id="retryBtn">↻ 다시 시작</button>
 </div>
+</div>
 
 <script>
 const gridSize = 7;
 const totalCells = gridSize * gridSize;
+let npcDifficulty = 'easy'; // 맨 위 변수 선언부에 추가
+
+const difficultyScreen = document.getElementById('difficultyScreen');
+const gameScreen = document.getElementById('gameScreen');
 
 let board, revealed, wordMap, foundWords, currentPlayer, foundBy, words, usedIndexes;
 let clovers = new Set(), daisies = new Set();
@@ -369,12 +433,61 @@ const npcScoreMobileEl = document.getElementById('npcScore-mobile');
 const retryBtn = document.getElementById('retryBtn');
 const currentTurnEl = document.getElementById('currentTurn');
 
+function startGame(difficulty) {
+  npcDifficulty = difficulty;
+  difficultyScreen.classList.add('hidden');  // 난이도 선택 화면만 숨김
+  gameScreen.classList.remove('hidden');
+  init();
+}
+
+
+function getAdjacentCells(index) {
+  const x = index % gridSize;
+  const y = Math.floor(index / gridSize);
+  const adjacent = [];
+  
+  for (let dy = -1; dy <= 1; dy++) {
+    for (let dx = -1; dx <= 1; dx++) {
+      if (dx === 0 && dy === 0) continue;
+      const nx = x + dx;
+      const ny = y + dy;
+      if (nx >= 0 && nx < gridSize && ny >= 0 && ny < gridSize) {
+        const nIdx = ny * gridSize + nx;
+        if (!revealed[nIdx]) {
+          adjacent.push(nIdx);
+        }
+      }
+    }
+  }
+  return adjacent;
+}
+
+function isNextToSpecial(index) {
+  const x = index % gridSize;
+  const y = Math.floor(index / gridSize);
+  
+  for (let dy = -1; dy <= 1; dy++) {
+    for (let dx = -1; dx <= 1; dx++) {
+      if (dx === 0 && dy === 0) continue;
+      const nx = x + dx;
+      const ny = y + dy;
+      if (nx >= 0 && nx < gridSize && ny >= 0 && ny < gridSize) {
+        const nIdx = ny * gridSize + nx;
+        if (clovers.has(nIdx) || daisies.has(nIdx)) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+}
+
 window.onload = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const poolFile = urlParams.get('pool');
   if (!poolFile) {
     // 임시로 기본 단어들 설정
-    words = ['서울특별시', '부산직할시', '여수밤바다', '목포의눈물', '동백아가씨', '이차선다리'];
+    words = ['계륵', '각골난망', '각양각색', '각자도생', '각주구검', '감개무량', '가화만사성'];
     init();
     return;
   }
@@ -700,8 +813,9 @@ function updateScore() {
 
 function updateTurnDisplay() {
   if (resultShown) return;
-  const name = currentPlayer === 'user' ? '사용자' : '컴퓨터';
-  currentTurnEl.textContent = `${name}의 차례입니다.`;
+  const name = currentPlayer === 'user' ? 'USER' : 'NPC';
+  const difficultyText = npcDifficulty === 'easy' ? '(Easy)' : '(Normal)';
+  currentTurnEl.textContent = `It is ${name}'s turn. ${currentPlayer === 'npc' ? difficultyText : ''}`;
 }
 
 function switchTurn(extra) {
@@ -720,19 +834,57 @@ function switchTurn(extra) {
 function npcMove() {
   if (resultShown) return;
   
-  const availableCells = [];
-  for (let i = 0; i < totalCells; i++) {
-    if (!revealed[i]) {
-      availableCells.push(i);
+  let selectedCell;
+  
+  if (npcDifficulty === 'easy') {
+    // 쉬움: 완전 랜덤
+    const availableCells = [];
+    for (let i = 0; i < totalCells; i++) {
+      if (!revealed[i]) {
+        availableCells.push(i);
+      }
+    }
+    
+    if (availableCells.length === 0) return;
+    
+    const randomIndex = Math.floor(Math.random() * availableCells.length);
+    selectedCell = availableCells[randomIndex];
+    
+  } else {
+    // 보통: 똑똑한 전략
+    let nearRevealedCells = [];
+    for (let i = 0; i < totalCells; i++) {
+      if (revealed[i]) {
+        const adjacent = getAdjacentCells(i);
+        nearRevealedCells.push(...adjacent);
+      }
+    }
+    
+    nearRevealedCells = [...new Set(nearRevealedCells)];
+    
+    let smartCells = nearRevealedCells.filter(idx => !isNextToSpecial(idx));
+    
+    if (smartCells.length > 0) {
+      const randomIndex = Math.floor(Math.random() * smartCells.length);
+      selectedCell = smartCells[randomIndex];
+    } else if (nearRevealedCells.length > 0) {
+      const randomIndex = Math.floor(Math.random() * nearRevealedCells.length);
+      selectedCell = nearRevealedCells[randomIndex];
+    } else {
+      const availableCells = [];
+      for (let i = 0; i < totalCells; i++) {
+        if (!revealed[i]) {
+          availableCells.push(i);
+        }
+      }
+      
+      if (availableCells.length === 0) return;
+      
+      const randomIndex = Math.floor(Math.random() * availableCells.length);
+      selectedCell = availableCells[randomIndex];
     }
   }
   
-  if (availableCells.length === 0) return;
-  
-  const randomIndex = Math.floor(Math.random() * availableCells.length);
-  const selectedCell = availableCells[randomIndex];
-  
-  console.log('컴퓨터가 선택한 셀:', selectedCell);
   handleClick(selectedCell, true);
 }
 
@@ -812,8 +964,10 @@ function checkGameEnd() {
 }
 
 retryBtn.onclick = () => {
-  init();
+  gameScreen.classList.add('hidden');
+  difficultyScreen.classList.remove('hidden');  // 난이도 선택 화면 다시 보임
 };
+
 </script>
 
 </body>
