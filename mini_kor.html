@@ -814,8 +814,8 @@ function updateScore() {
 function updateTurnDisplay() {
   if (resultShown) return;
   const name = currentPlayer === 'user' ? 'USER' : 'NPC';
-  const difficultyText = npcDifficulty === 'easy' ? '(Easy)' : '(Normal)';
-  currentTurnEl.textContent = `It is ${name}'s turn. ${currentPlayer === 'npc' ? difficultyText : ''}`;
+  const difficultyText = npcDifficulty === 'easy' ? '(쉬움)' : '(보통)';
+  currentTurnEl.textContent = `${name}의 차례입니다. ${currentPlayer === 'npc' ? difficultyText : ''}`;
 }
 
 function switchTurn(extra) {
