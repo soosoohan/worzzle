@@ -473,7 +473,8 @@ function isNextToSpecial(index) {
       const ny = y + dy;
       if (nx >= 0 && nx < gridSize && ny >= 0 && ny < gridSize) {
         const nIdx = ny * gridSize + nx;
-        if (clovers.has(nIdx) || daisies.has(nIdx)) {
+        // 이미 열린 아이템만 피하기
+        if ((clovers.has(nIdx) || daisies.has(nIdx)) && revealed[nIdx]) {
           return true;
         }
       }
