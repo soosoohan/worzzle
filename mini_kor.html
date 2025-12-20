@@ -445,11 +445,8 @@ const currentTurnEl = document.getElementById('currentTurn');
 
 function startGame(difficulty) {
   npcDifficulty = difficulty;
-  difficultyScreen.classList.add('hidden');  // 난이도 선택 화면만 숨김
-  gameScreen.classList.remove('hidden');
   init();
 }
-
 
 function getAdjacentCells(index) {
   const x = index % gridSize;
