@@ -495,7 +495,7 @@ window.onload = () => {
   const poolFile = urlParams.get('pool');
   if (!poolFile) {
     // 임시로 기본 단어들 설정
-    words = ['계륵', '각골난망', '각양각색', '각자도생', '각주구검', '감개무량', '가화만사성'];
+    words = ['계륵', '각골난망', '각양각색', '각자도생', '각주구검', '감개무량', '등용문'];
     init();
     return;
   }
@@ -579,7 +579,7 @@ function init() {
     console.log('실제 배치된 단어 수:', placedWords.length);
   }
   
-  placeDaisies(8);
+  placeDaisies(5);
   placeClovers(5);
   fillEmptyCells();
   updateScore();
