@@ -858,6 +858,7 @@ function switchTurn(extra) {
 function findAlmostCompleteWord() {
   for (let word of Object.keys(wordMap)) {
     if (foundWords.has(word)) continue;
+    if (word.length < 4) continue; // 4글자 미만은 이 우선순위 로직 제외
     const pos = wordMap[word].positions;
     const unrevealed = pos.filter(i => !revealed[i]);
     if (unrevealed.length === 1) {
