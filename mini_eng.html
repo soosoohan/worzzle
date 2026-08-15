@@ -863,11 +863,34 @@ function switchTurn(extra) {
   }
 }
 
+function findAlmostCompleteWord() {
+  for (let word of Object.keys(wordMap)) {
+    if (foundWords.has(word)) continue;
+    const pos = wordMap[word].positions;
+    const unrevealed = pos.filter(i => !revealed[i]);
+    if (unrevealed.length === 1) {
+      return unrevealed[0]; // 마지막 한 칸의 인덱스
+    }
+  }
+  return null;
+}
+
 function npcMove() {
   if (resultShown) return;
-  
+
+  // 0순위: 마지막 한 글자만 남은 단어는 무조건 확정
+  // 단, 쉬움 모드에서는 50% 확률로만 이 능력을 사용
+  let almostComplete = findAlmostCompleteWord();
+  if (almostComplete !== null) {
+    if (npcDifficulty === 'normal' || Math.random() < 0.5) {
+      handleClick(almostComplete, true);
+      return;
+    }
+    // 쉬움 모드에서 50% 확률로 걸리면 그냥 아래 랜덤 로직으로 넘어감
+  }
+
   let selectedCell;
-  
+    
   if (npcDifficulty === 'easy') {
     // 쉬움: 완전 랜덤
     const availableCells = [];
