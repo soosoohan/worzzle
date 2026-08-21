@@ -57,9 +57,9 @@
     padding: 10px;
   }
 .back-button {
-    position: absolute;
-    top: 20px;
-    left: 20px;
+    position: fixed;
+    top: max(48px, env(safe-area-inset-top) + 20px);
+    left: 22px;
     padding: 8px 10px;      /* 모바일 기본 */
     font-size: 2em;
     font-weight: bold;
