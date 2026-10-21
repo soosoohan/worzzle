@@ -158,6 +158,9 @@
     user-select: none;
     border-radius: 4px;
   }
+  .cell.npc-last {
+    background-color: #FFE94D;
+}
 
   .revealed {
     background-color: #fff;
@@ -928,6 +931,10 @@ function npcMove() {
   handleClick(selectedCell, true);
 }
 
+function clearNpcLast() {
+  document.querySelectorAll('.npc-last')
+    .forEach(c => c.classList.remove('npc-last'));
+}
 
 function handleClick(index, isnpcMove = false) {
   if (revealed[index] || resultShown) return;
@@ -947,6 +954,11 @@ function handleClick(index, isnpcMove = false) {
   console.log(`클릭: 인덱스 ${index}, 플레이어: ${currentPlayer}, 추가턴: ${extra}`);
   
   reveal(index);
+  clearNpcLast();
+  if (isnpcMove) {
+    gameEl.children[index].classList.add('npc-last');
+  }
+
   checkWords();
   checkGameEnd();
 
