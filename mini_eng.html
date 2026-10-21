@@ -973,33 +973,40 @@ function checkWords() {
 }
 
 function checkGameEnd() {
+  if (resultShown) return;
   const totalWords = Object.keys(wordMap).length;
-  if (foundWords.size >= totalWords && totalWords > 0) {
-    resultShown = true;
-    
-    if (npcTimeoutId) {
-      clearTimeout(npcTimeoutId);
-      npcTimeoutId = null;
-    }
-    
-    const userWords = foundBy.user.length;
-    const npcWords = foundBy.npc.length;
-    let winner = '';
-    
-    if (userWords > npcWords) {
-      winner = 'USER WINS!';
-    } else if (npcWords > userWords) {
-      winner = 'NPC WINS!';
-    } else {
-      winner = 'DRAW!';
-    }
-    
-    currentTurnEl.textContent = `Game Over! ${winner}`;
-    
-    setTimeout(() => {
-      alert(`Game Over!\n\nUSER: ${userWords} words\nNPC: ${npcWords} words\n\n${winner}`);
-    }, 500);
+  if (!(foundWords.size >= totalWords && totalWords > 0)) return;
+
+  resultShown = true;
+
+  if (npcTimeoutId) {
+    clearTimeout(npcTimeoutId);
+    npcTimeoutId = null;
   }
+
+  const userWords = foundBy.user.length;
+  const npcWords = foundBy.npc.length;
+
+  let result, winner;
+  if (userWords > npcWords) {
+    result = 'win';
+    winner = 'USER WINS!';
+  } else if (npcWords > userWords) {
+    result = 'lose';
+    winner = 'NPC WINS!';
+  } else {
+    result = 'draw';
+    winner = 'DRAW!';
+  }
+
+  currentTurnEl.textContent = `Game Over! ${winner}`;
+
+  showEndOverlay({
+    lang: 'en',
+    result,
+    scoreText: `USER: ${userWords} / NPC: ${npcWords}`,
+    onRestart: () => location.reload()
+  });
 }
 
 retryBtn.onclick = () => {
