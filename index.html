@@ -109,9 +109,7 @@
   .back-button:active {transform: scale(0.92);transition: transform 0.1s;}
 
    .language-toggle {
-        position: absolute;
-        top: 12px;
-        right: 12px;
+        display: flex;
         background: #FFF2EB;
         padding: 8px;
         border-radius: 8px;
@@ -138,15 +136,14 @@
     .language-button.active {
         background: #ff69b4;
     }
-  
-h1 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    color: #FF9494;
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  header {
+  text-align: center;
+  margin: 0 auto 30px;
+  max-width: 800px;
 }
+
 .main-title {
-    margin: 60px 0 20px;
+    margin: 0 0 20px;
     font-size: 0;
 }
 .main-title img {
@@ -242,6 +239,9 @@ margin-top: 30px;
 .hidden {
     display: none;
 }
+header { display: flow-root; height: auto !important; }
+.main-title { height: auto !important; }
+.main-title img { position: static !important; float: none !important; }
 
 @media (max-width: 650px) {
     body {
@@ -318,17 +318,23 @@ margin-top: 30px;
 </style>  
 </head>
 <body onload="initLanguage()">
- <button class="back-button" onclick="location.href='https://soosooland.com/'" aria-label="수수랜드 홈으로">
- <img src="https://soosooland.com/images/home.png" alt="수수랜드 홈"></button>
-      <div class="language-toggle">
-      <button class="language-button active" onclick="toggleLanguage('ko')">한</button>
-      <button class="language-button" onclick="toggleLanguage('en')">EN</button>
+<link rel="stylesheet" href="toolbar.css">
+<div class="toolbar">
+  <button class="back-button" onclick="location.href='https://soosooland.com/'" aria-label="수수랜드 홈으로">
+  <img src="https://soosooland.com/images/home.png" alt="수수랜드 홈">
+</button>
+    <div class="language-toggle">
+      <button class="language-button active" onclick="toggleLanguage('ko')">한국어</button>
+      <button class="language-button" onclick="toggleLanguage('en')">English</button>
             </div>
- <div class="header">
+</div> <!-- .toolbar -->
+<header>
  <h1 class="main-title">
-        <img src="banner2.jpeg" alt="워퍼즈 미니 Worpuzz mini">
-    </h1></div>
-  <div class="description">
+        <img src="https://soosooland.com/worzzle/banner2.jpeg" alt="워퍼즈 미니 Worpuzz mini">
+    </h1>
+  </header>
+
+<div class="description">
 <div id="korean-description">
  <p style="text-align: left; padding-left: 20px;">
     • 컴퓨터와 교대로 격자를 클릭하여 숨겨진 단어를 찾아가는 1인용 단어 찾기 게임입니다.<br>
